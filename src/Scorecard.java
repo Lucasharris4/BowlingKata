@@ -28,12 +28,20 @@ public class Scorecard {
 		if (pinsRolled.equals("X")) {
 			int strike = getSrike(pinsRolled, currentFrame);
 			return strike;
-		} else if (pinsRolled.equals("/")) {
-			return 15;
+		} else if (pinsRolled.equals("_/")) {
+			int spare = getSpare(pinsRolled, currentFrame);
+			return spare;
 		}
 		return addFrame(pinsRolled.split(""));
 	}
 	
+	private int getSpare(String pinsRolled, int currentFrame) {
+		if (currentFrame == 9 || frames[currentFrame + 1].equals("_/")) {
+			return 15;
+		}
+		return 10;
+	}
+
 	private int getSrike(String pinsRolled, int currentFrame) {
 		if (currentFrame == 9 || frames[currentFrame + 1].equals("X")) {
 			return 30;

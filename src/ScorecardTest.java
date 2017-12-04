@@ -32,8 +32,8 @@ public class ScorecardTest {
 	
 	@Test
 	public void allSparesEqualsOneHundredFifty() {
-		String[] allSpares = {"/", "/", "/", "/", "/",
-				   "/", "/", "/", "/", "/"};
+		String[] allSpares = {"_/", "_/", "_/", "_/", "_/",
+				   		      "_/", "_/", "_/", "_/", "_/"};
 		
 		Scorecard scorecard = new Scorecard (allSpares);
 		int score = scorecard.getScore();
@@ -61,7 +61,7 @@ public class ScorecardTest {
 		Assert.assertEquals("If one rolls over three pins every frame with no gutters they will score 30", 30, score);
 	}
 	@Test 
-	public void oneStrikeAndAllGuttersReturn10() {
+	public void oneStrikeAndAllGuttersReturnTen() {
 		String oneStrikeAndAllGutters[] = {"X", "__", "__", "__", "__",
 	   			  							"__", "__", "__", "__", "__"};
 		
@@ -69,5 +69,16 @@ public class ScorecardTest {
 		int score = scorecard.getScore();
 		
 		Assert.assertEquals("One strike and all gutters should return 10", 10, score);
+	}
+	@Test
+	public void oneSpareAndAllGuttersReturnsTen() {
+		String oneSprareAndAllGutters[] = {"_/", "__", "__", "__", "__",
+						"__", "__", "__", "__", "__"};
+		
+		Scorecard scorecard = new Scorecard(oneSprareAndAllGutters);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("One spare and all gutters should return 10", 10, score);
+		
 	}
 }
