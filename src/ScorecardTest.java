@@ -29,4 +29,15 @@ public class ScorecardTest {
 		
 		Assert.assertEquals("All Gutters should return 0", 0, score);
 	}
+	
+	@Test
+	public void allSparesEqualsOneHundredFifty() {
+		String[] allSpares = {"/", "/", "/", "/", "/",
+				   "/", "/", "/", "/", "/"};
+		
+		Scorecard scorecard = new Scorecard (allSpares);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("All spares should return 150", 150, score);
+	}
 }

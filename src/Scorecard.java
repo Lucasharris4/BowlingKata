@@ -27,6 +27,8 @@ public class Scorecard {
 	private int getFrame(String currentFrame) {
 		if (currentFrame.equals("X")) {
 			return 30;
+		} else if (currentFrame.equals("/")) {
+			return 15;
 		}
 		return 0;
 	}
