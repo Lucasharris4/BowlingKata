@@ -101,4 +101,14 @@ public class ScorecardTest {
 
 		Assert.assertEquals("One spare, one strike, and all gutters should return 20", 20, score);
 	}
+	@Test
+	public void threeStrikesAndAllGuttersShouldReturnSixty() {
+		String threeStrikesAndAllGutters[] = {"X", "X", "X", "__", "__",
+											"__", "__", "__", "__", "__"};
+		
+		Scorecard scorecard = new Scorecard(threeStrikesAndAllGutters);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("Three strikes and all gutters should return 60", 60, score);
+	}
 }

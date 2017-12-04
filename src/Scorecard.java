@@ -10,35 +10,38 @@ public class Scorecard {
 		int score = 0;
 		for (int i = 0; i < 10; i++) {
 			int frame = getFrame(frames[i], i);
-			score += frame;
-			
+			score += frame;	
 		}
 		return score;
 	}
 
 	private int getFrame(String pinsRolled, int currentFrame) {
 		if (pinsRolled.equals("X") || pinsRolled.equals("XXX")) {
-			int strike = getSrike(pinsRolled, currentFrame);
+			int strike = getSrike(currentFrame);
 			return strike;
 		} else if (pinsRolled.equals("_/")) {
-			int spare = getSpare(pinsRolled, currentFrame);
+			int spare = getSpare(currentFrame);
 			return spare;
 		}
 		return addFrame(pinsRolled.split(""));
 	}
 	
-	private int getSpare(String pinsRolled, int currentFrame) {
+	private int getSpare(int currentFrame) {
 		if (currentFrame == 9 || frames[currentFrame + 1].equals("_/")) {
 			return 15;
 		}
 		return 10;
 	}
 
-	private int getSrike(String pinsRolled, int currentFrame) {
+	private int getSrike(int currentFrame) {
+		int score = 10;
 		if (currentFrame == 9 || frames[currentFrame + 1].equals("X") || frames[currentFrame + 1].equals("XXX")) {
-			return 30;
+			score += 10;
 		}
-		return 10;
+		if (currentFrame == 8 || currentFrame == 9 || frames[currentFrame + 2].equals("X") || frames[currentFrame + 2].equals("XXX")) {
+			score += 10;
+		}
+		return score;
 	}
 
 	private int addFrame(String[] individualRolls) {
