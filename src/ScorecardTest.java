@@ -53,11 +53,21 @@ public class ScorecardTest {
 	@Test
 	public void noGuttersStrikesOrSpares() {
 		String noGuttersStrikesOrSpares[] = {"12", "12", "12", "12", "12",
-		   		   "12", "12", "12", "12", "12"};
+		   		   							"12", "12", "12", "12", "12"};
 		
 		Scorecard scorecard = new Scorecard(noGuttersStrikesOrSpares);
 		int score = scorecard.getScore();
 		
 		Assert.assertEquals("If one rolls over three pins every frame with no gutters they will score 30", 30, score);
+	}
+	@Test 
+	public void oneStrikeAndAllGuttersReturn10() {
+		String oneStrikeAndAllGutters[] = {"X", "__", "__", "__", "__",
+	   			  							"__", "__", "__", "__", "__"};
+		
+		Scorecard scorecard = new Scorecard(oneStrikeAndAllGutters);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("One strike and all gutters should return 10", 10, score);
 	}
 }
