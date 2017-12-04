@@ -18,4 +18,15 @@ public class ScorecardTest {
 		
 		Assert.assertEquals("A perfect game should return 300", 300, score);
 		}
+	
+	@Test
+	public void tenEmptyFramesScoresZero() {
+		String[] allGutters = {"__", "__", "__", "__", "__",
+				   			  "__", "__", "__", "__", "__"};
+		
+		Scorecard scorecard = new Scorecard (allGutters);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("All Gutters should return 0", 0, score);
+	}
 }
