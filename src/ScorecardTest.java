@@ -12,7 +12,7 @@ public class ScorecardTest {
 	@Test
 	public void perfectGameScoresThreeHundred() {
 		String[] perfectGame = {"X", "X", "X", "X", "X",
-							   "X", "X", "X", "X", "X"};
+							   "X", "X", "X", "X", "XXX"};
 		Scorecard scorecard = new Scorecard (perfectGame);
 		int score = scorecard.getScore();
 		
@@ -80,5 +80,25 @@ public class ScorecardTest {
 		
 		Assert.assertEquals("One spare and all gutters should return 10", 10, score);
 		
+	}
+	@Test
+	public void oneStrikeOneSpareAndAllGuttersShouldReturnTwenty() {
+		String oneStrikeOneSpare[] = {"X", "_/", "__", "__", "__",
+										   "__", "__", "__", "__", "__"};
+
+		Scorecard scorecard = new Scorecard(oneStrikeOneSpare);
+		int score = scorecard.getScore();
+
+		Assert.assertEquals("One strike one spare and all gutters should return 20", 20, score);
+	}
+	@Test
+	public void oneSpareAndOneStrikeShouldReturnTwenty() {
+		String oneSpareAndOneStrike[] = {"_/", "X", "__", "__", "__",
+										   "__", "__", "__", "__", "__"};
+
+		Scorecard scorecard = new Scorecard(oneSpareAndOneStrike);
+		int score = scorecard.getScore();
+
+		Assert.assertEquals("One spare, one strike, and all gutters should return 20", 20, score);
 	}
 }

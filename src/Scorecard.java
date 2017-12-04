@@ -25,7 +25,7 @@ public class Scorecard {
 	}
 
 	private int getFrame(String pinsRolled, int currentFrame) {
-		if (pinsRolled.equals("X")) {
+		if (pinsRolled.equals("X") || pinsRolled.equals("XXX")) {
 			int strike = getSrike(pinsRolled, currentFrame);
 			return strike;
 		} else if (pinsRolled.equals("_/")) {
@@ -43,7 +43,7 @@ public class Scorecard {
 	}
 
 	private int getSrike(String pinsRolled, int currentFrame) {
-		if (currentFrame == 9 || frames[currentFrame + 1].equals("X")) {
+		if (currentFrame == 9 || frames[currentFrame + 1].equals("X") || frames[currentFrame + 1].equals("XXX")) {
 			return 30;
 		}
 		return 10;
