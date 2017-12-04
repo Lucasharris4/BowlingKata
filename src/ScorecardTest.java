@@ -40,4 +40,14 @@ public class ScorecardTest {
 		
 		Assert.assertEquals("All spares should return 150", 150, score);
 	}
+	@Test
+	public void allNinesShouldReturnNinety() {
+		String allNines[] = {"_9", "_9", "_9", "_9", "_9",
+				   		   "_9", "_9", "_9", "_9", "_9"};
+		
+		Scorecard scorecard = new Scorecard (allNines);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("All nines should return 90", 90, score);
+	}
 }

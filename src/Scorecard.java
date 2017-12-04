@@ -30,6 +30,6 @@ public class Scorecard {
 		} else if (currentFrame.equals("/")) {
 			return 15;
 		}
-		return 0;
+		return currentFrame == "__" ? 0 : 9;
 	}
 }
