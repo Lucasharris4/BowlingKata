@@ -50,4 +50,14 @@ public class ScorecardTest {
 		
 		Assert.assertEquals("All nines should return 90", 90, score);
 	}
+	@Test
+	public void noGuttersStrikesOrSpares() {
+		String noGuttersStrikesOrSpares[] = {"12", "12", "12", "12", "12",
+		   		   "12", "12", "12", "12", "12"};
+		
+		Scorecard scorecard = new Scorecard(noGuttersStrikesOrSpares);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("If one rolls over three pins every frame with no gutters they will score 30", 30, score);
+	}
 }

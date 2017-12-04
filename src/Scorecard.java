@@ -30,6 +30,10 @@ public class Scorecard {
 		} else if (currentFrame.equals("/")) {
 			return 15;
 		}
-		return currentFrame == "__" ? 0 : 9;
+		return addFrame(currentFrame.split(""));
+	}
+	
+	private int addFrame(String[] individualRolls) {
+		return (individualRolls[0].equals("_") ? 0 : Integer.parseInt(individualRolls[0])) + (individualRolls[1].equals("_") ? 0 : Integer.parseInt(individualRolls[1]));
 	}
 }
