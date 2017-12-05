@@ -33,7 +33,7 @@ public class ScorecardTest {
 	@Test
 	public void allSparesEqualsOneHundredFifty() {
 		String[] allSpares = {"5/", "5/", "5/", "5/", "5/",
-				   		      "5/", "5/", "5/", "5/", "5/"};
+				   		      "5/", "5/", "5/", "5/", "5/5"};
 		
 		Scorecard scorecard = new Scorecard (allSpares);
 		int score = scorecard.getScore();
@@ -130,5 +130,15 @@ public class ScorecardTest {
 		int score = scorecard.getScore();
 		
 		Assert.assertEquals("This player should receive the score of 157", 157, score);
+	}
+	@Test
+	public void scoreWithSparesAndNoGuttersReturnsCorrectly() {
+		String sparesAndNoGutters[] = {"5/", "12", "34", "5/", "5/",
+										"5/", "5/", "5/", "12", "34"};
+		
+		Scorecard scorecard = new Scorecard(sparesAndNoGutters);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("this player should receive the score of 102", 102, score);
 	}
 }

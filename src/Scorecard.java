@@ -28,12 +28,12 @@ public class Scorecard {
 	}
 	
 	private int getSpare(int currentFrame) {
-		if (currentFrame == 9 || frames[currentFrame + 1].equals("5/")) {
-			return 15;
-		} else if (frames[currentFrame + 1].equals("X")) {
+		if (currentFrame == 9) {
+			return 10 + Integer.parseInt(frames[currentFrame].substring(2));
+		} else if (frames[currentFrame + 1].substring(0,  1).equals("X")) {
 			return 20;
 		}
-		return 10;
+			return 10 + Integer.parseInt(frames[currentFrame + 1].substring(0, 1));
 	}
 
 	private int getSrike(int currentFrame) {
