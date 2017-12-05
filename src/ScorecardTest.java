@@ -171,4 +171,20 @@ public class ScorecardTest {
 		
 		Assert.assertEquals("This player should receive the score of 285", 285, score);
 	}
+	@Test
+	public void tenthFrameContainsSpareAndNoStrike() {
+		String[] tenthFrameSpareNoStrike = {"X", "X", "X", "X", "X",
+										   "X", "X", "X", "X", "5/5"};
+		
+		Scorecard scorecard = new Scorecard (tenthFrameSpareNoStrike);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("This player should receive the score of 270", 270, score);
+	}
+	@Test
+	public void randomScoreGeneratesTenStrings() {
+		RandomScoreGenerator randomScore = new RandomScoreGenerator();
+		String[] ten = randomScore.generate();
+		Assert.assertTrue("There should be ten strings in a generated array", ten.length == 10);
+	}
 }
