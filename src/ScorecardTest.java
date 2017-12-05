@@ -21,8 +21,8 @@ public class ScorecardTest {
 	
 	@Test
 	public void tenEmptyFramesScoresZero() {
-		String[] allGutters = {"__", "__", "__", "__", "__",
-				   			  "__", "__", "__", "__", "__"};
+		String[] allGutters = {"00", "00", "00", "00", "00",
+				   			  "00", "00", "00", "00", "00"};
 		
 		Scorecard scorecard = new Scorecard (allGutters);
 		int score = scorecard.getScore();
@@ -32,8 +32,8 @@ public class ScorecardTest {
 	
 	@Test
 	public void allSparesEqualsOneHundredFifty() {
-		String[] allSpares = {"_/", "_/", "_/", "_/", "_/",
-				   		      "_/", "_/", "_/", "_/", "_/"};
+		String[] allSpares = {"5/", "5/", "5/", "5/", "5/",
+				   		      "5/", "5/", "5/", "5/", "5/"};
 		
 		Scorecard scorecard = new Scorecard (allSpares);
 		int score = scorecard.getScore();
@@ -42,8 +42,8 @@ public class ScorecardTest {
 	}
 	@Test
 	public void allNinesShouldReturnNinety() {
-		String allNines[] = {"_9", "_9", "_9", "_9", "_9",
-				   		   "_9", "_9", "_9", "_9", "_9"};
+		String allNines[] = {"09", "09", "09", "09", "09",
+				   		   "09", "09", "09", "09", "09"};
 		
 		Scorecard scorecard = new Scorecard (allNines);
 		int score = scorecard.getScore();
@@ -62,8 +62,8 @@ public class ScorecardTest {
 	}
 	@Test 
 	public void oneStrikeAndAllGuttersReturnTen() {
-		String oneStrikeAndAllGutters[] = {"X", "__", "__", "__", "__",
-	   			  							"__", "__", "__", "__", "__"};
+		String oneStrikeAndAllGutters[] = {"X", "00", "00", "00", "00",
+	   			  							"00", "00", "00", "00", "00"};
 		
 		Scorecard scorecard = new Scorecard(oneStrikeAndAllGutters);
 		int score = scorecard.getScore();
@@ -72,8 +72,8 @@ public class ScorecardTest {
 	}
 	@Test
 	public void oneSpareAndAllGuttersReturnsTen() {
-		String oneSprareAndAllGutters[] = {"_/", "__", "__", "__", "__",
-						"__", "__", "__", "__", "__"};
+		String oneSprareAndAllGutters[] = {"5/", "00", "00", "00", "00",
+						"00", "00", "00", "00", "00"};
 		
 		Scorecard scorecard = new Scorecard(oneSprareAndAllGutters);
 		int score = scorecard.getScore();
@@ -83,32 +83,52 @@ public class ScorecardTest {
 	}
 	@Test
 	public void oneStrikeOneSpareAndAllGuttersShouldReturnTwenty() {
-		String oneStrikeOneSpare[] = {"X", "_/", "__", "__", "__",
-										   "__", "__", "__", "__", "__"};
+		String oneStrikeOneSpare[] = {"X", "5/", "00", "00", "00",
+										   "00", "00", "00", "00", "00"};
 
 		Scorecard scorecard = new Scorecard(oneStrikeOneSpare);
 		int score = scorecard.getScore();
 
-		Assert.assertEquals("One strike one spare and all gutters should return 20", 20, score);
+		Assert.assertEquals("One strike one spare and all gutters should return 30", 30, score);
 	}
 	@Test
-	public void oneSpareAndOneStrikeShouldReturnTwenty() {
-		String oneSpareAndOneStrike[] = {"_/", "X", "__", "__", "__",
-										   "__", "__", "__", "__", "__"};
+	public void oneSpareAndOneStrikeShouldReturnThirty() {
+		String oneSpareAndOneStrike[] = {"5/", "X", "00", "00", "00",
+										   "00", "00", "00", "00", "00"};
 
 		Scorecard scorecard = new Scorecard(oneSpareAndOneStrike);
 		int score = scorecard.getScore();
 
-		Assert.assertEquals("One spare, one strike, and all gutters should return 20", 20, score);
+		Assert.assertEquals("One spare, one strike, and all gutters should return 30", 30, score);
 	}
 	@Test
 	public void threeStrikesAndAllGuttersShouldReturnSixty() {
-		String threeStrikesAndAllGutters[] = {"X", "X", "X", "__", "__",
-											"__", "__", "__", "__", "__"};
+		String threeStrikesAndAllGutters[] = {"X", "X", "X", "00", "00",
+											"00", "00", "00", "00", "00"};
 		
 		Scorecard scorecard = new Scorecard(threeStrikesAndAllGutters);
 		int score = scorecard.getScore();
 		
 		Assert.assertEquals("Three strikes and all gutters should return 60", 60, score);
+	}
+	@Test
+	public void threeSparesAndAllGuttersShouldReturnThirty() {
+		String threeSparesAndAllGutters[] = {"5/", "5/", "5/", "00", "00",
+				   							"00", "00", "00", "00", "00"};
+		
+		Scorecard scorecard = new Scorecard(threeSparesAndAllGutters);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("Three spares and all gutters should return 40", 40, score);
+	}
+	@Test
+	public void scoreWithStrikesAndNoGuttersReturnsCorrectly() {
+		String strikesAndNoGutters[] = {"X", "12", "34", "X", "X",
+				   						"X", "X", "X", "12", "34"};
+		
+		Scorecard scorecard = new Scorecard(strikesAndNoGutters);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("This player should receive the score of 157", 157, score);
 	}
 }
