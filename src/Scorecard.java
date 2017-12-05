@@ -51,8 +51,10 @@ public class Scorecard {
 			nextRolls[1] = frames[currentFrame + 2].substring(0, 1).equals("X") ? 10 : Integer.parseInt(frames[currentFrame + 2].substring(0, 1));
 			return score + nextRolls[0] + nextRolls[1];
 		}
-		nextRolls[0] = frames[currentFrame].substring(1, 2).equals("X") ? 10 : Integer.parseInt(frames[currentFrame].substring(1, 2));
-		nextRolls[1] = frames[currentFrame].substring(2).equals("X") ? 10 : Integer.parseInt(frames[currentFrame].substring(2, 3));
+		nextRolls[0] = 10;
+		nextRolls[1] = 10;
+//		nextRolls[0] = frames[currentFrame].substring(1, 2).equals("X") ? 10 : Integer.parseInt(frames[currentFrame].substring(1, 2));
+//		nextRolls[1] = frames[currentFrame].substring(2).equals("X") ? 10 : Integer.parseInt(frames[currentFrame].substring(2, 3));
 		return score + nextRolls[0] + nextRolls[1];
 	}
 
