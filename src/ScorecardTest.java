@@ -204,4 +204,25 @@ public class ScorecardTest {
 		}
 		Assert.assertFalse("There should be no bad entries in our randomly generated score", badEntry);
 	}
+	@Test
+	public void tenOnTheFirstRollShouldResultInAStrike() {
+		boolean badEntry = false;
+		for (int i=0 ; i < playerScore.length - 1; i++) {
+			if (playerScore[i].length() == 3) {
+				badEntry = true;
+			}
+		}
+		Assert.assertFalse("There should be no entries with three digits before the tenth frame", badEntry);
+	}
+	@Test
+	public void tenPinsTotalShouldResultInStrikeOrSpareFirstNineFramesOnly() {
+		boolean badEntry = false;
+		for (int i=0 ; i < playerScore.length - 1; i++) {
+			if (!playerScore[i].equals("X") && !playerScore[i].contains("/")) {
+				int totalPins = (Integer.parseInt(playerScore[i].substring(0, 1)) + Integer.parseInt(playerScore[i].substring(1)));
+				badEntry = totalPins > 10;
+			}
+		}
+		Assert.assertFalse("If the total pins knocked down is greater than ten a Strike or a Spare should occur", badEntry);
+	}
 }
