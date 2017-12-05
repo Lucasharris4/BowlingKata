@@ -43,8 +43,8 @@ public class Scorecard {
 			if (frames[currentFrame + 1].equals("XXX")) {
 				return 30;
 			}
-			nextRolls[0] = Integer.parseInt(frames[currentFrame + 1].substring(0, 1));
-			nextRolls[1] = frames[currentFrame + 1].substring(1).equals("/") ? 10 - nextRolls[0] : Integer.parseInt(frames[currentFrame + 1].substring(1));
+			nextRolls[0] = frames[currentFrame + 1].substring(0, 1).equals("X") ? 10 : Integer.parseInt(frames[currentFrame + 1].substring(0, 1));
+			nextRolls[1] = frames[currentFrame + 1].substring(1, 2).equals("/") ? 10 - nextRolls[0] : Integer.parseInt(frames[currentFrame + 1].substring(1, 2));
 			return score + nextRolls[0] + nextRolls[1];
 		} else if (currentFrame < 9){
 			nextRolls[0] = 10;
@@ -57,6 +57,9 @@ public class Scorecard {
 	}
 
 	private int addFrame(String[] individualRolls) {
-		return (individualRolls[0].equals("_") ? 0 : Integer.parseInt(individualRolls[0])) + (individualRolls[1].equals("_") ? 0 : Integer.parseInt(individualRolls[1]));
+		if (individualRolls.length < 3) {
+			return Integer.parseInt(individualRolls[0]) + Integer.parseInt(individualRolls[1]);
+		}
+		return 20;
 	}
 }

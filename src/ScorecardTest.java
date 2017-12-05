@@ -141,4 +141,34 @@ public class ScorecardTest {
 		
 		Assert.assertEquals("this player should receive the score of 102", 102, score);
 	}
+	@Test
+	public void strikesSparesAndNoGuttersReturnsCorrectly() {
+		String strikesSparesAndNoGutters[] = {"5/", "12", "34", "5/", "X",
+											 "5/", "X", "5/", "12", "34"};
+		
+		Scorecard scorecard = new Scorecard(strikesSparesAndNoGutters);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("The score for this player should be 122", 122, score);
+	}
+	@Test
+	public void strikesSparesAndGutters() {
+		String strikesSparesAndGutters[] = {"5/", "10", "34", "5/", "X",
+				 							  "5/", "X", "5/", "02", "34"};
+		
+		Scorecard scorecard = new Scorecard(strikesSparesAndGutters);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("This player should receive the score of 118", 118, score);
+	}
+	@Test
+	public void tenthFrameContainsStrikeAndSpare() {
+		String[] tenthFrameStrikeSpare = {"X", "X", "X", "X", "X",
+				   						"X", "X", "X", "X", "X5/"};
+		
+		Scorecard scorecard = new Scorecard(tenthFrameStrikeSpare);
+		int score = scorecard.getScore();
+		
+		Assert.assertEquals("This player should receive the score of 285", 285, score);
+	}
 }
