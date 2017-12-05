@@ -4,9 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ScorecardTest {
+	private String[] playerScore;
+	
 	@Before
 	public void setup() {
-		;
+		RandomScoreGenerator randomScore = new RandomScoreGenerator();
+		playerScore = randomScore.generate();
 	}
 	
 	@Test
@@ -183,8 +186,21 @@ public class ScorecardTest {
 	}
 	@Test
 	public void randomScoreGeneratesTenStrings() {
-		RandomScoreGenerator randomScore = new RandomScoreGenerator();
-		String[] ten = randomScore.generate();
-		Assert.assertTrue("There should be ten strings in a generated array", ten.length == 10);
+		Assert.assertTrue("There should be ten strings in a generated array", playerScore.length == 10);
+	}
+	@Test
+	public void radomScoreGeneratesTenStringsWithNumbersStrikesOrSparesInThem() {
+		boolean badEntry = false;
+		for (int i=0 ; i < playerScore.length; i++) {
+			if (!playerScore[i].contains("X") && !playerScore[i].contains("/")) {
+				try {
+					badEntry = Integer.parseInt(playerScore[i]) <= 0;
+					badEntry = Integer.parseInt(playerScore[i]) >= 10;
+				} catch (NumberFormatException e) {
+					badEntry = true;
+				}
+			}
+		}
+		Assert.assertFalse("There should be no bad entries in our randomly generated score", badEntry);
 	}
 }
