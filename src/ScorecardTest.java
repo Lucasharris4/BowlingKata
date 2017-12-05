@@ -196,10 +196,11 @@ public class ScorecardTest {
 				try {
 					badEntry = Integer.parseInt(playerScore[i]) <= 0;
 					badEntry = Integer.parseInt(playerScore[i]) >= 10;
+					badEntry = playerScore[i].length() > 1 ? false : true;
 				} catch (NumberFormatException e) {
 					badEntry = true;
 				}
-			}
+			} 
 		}
 		Assert.assertFalse("There should be no bad entries in our randomly generated score", badEntry);
 	}
