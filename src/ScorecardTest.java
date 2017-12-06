@@ -225,4 +225,13 @@ public class ScorecardTest {
 		}
 		Assert.assertFalse("If the total pins knocked down is greater than ten a Strike or a Spare should occur", badEntry);
 	}
+	@Test
+	public void tenthFrameShouldAllowForThreeRolls() {
+		boolean badEntry = false;
+		if (playerScore[9].substring(0, 1).equals("X") || playerScore[9].substring(1, 2).equals("/")) {
+			badEntry = playerScore[9].length() < 3;
+			System.out.println(playerScore[9]);
+		}
+		Assert.assertFalse("If a player gets a strike on the tenth frame he or she should get three rolls", badEntry);
+	}
 }
